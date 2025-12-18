@@ -11,7 +11,6 @@ import {
   ShoppingBag, 
   Truck, 
   CheckCircle2, 
-  AlertCircle,
   ArrowRight,
   Heart,
   Star,
