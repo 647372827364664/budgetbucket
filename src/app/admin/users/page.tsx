@@ -8,7 +8,6 @@ import {
   Search, 
   Shield, 
   ShieldOff,
-  User as UserIcon,
   Crown,
   Edit2,
   X,
