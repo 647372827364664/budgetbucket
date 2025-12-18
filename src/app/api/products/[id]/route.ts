@@ -167,9 +167,11 @@ const DEMO_PRODUCTS = [
  */
 export async function GET(
   _request: NextRequest,
-  { params }: { params: { id: string } }
+  context: any
 ) {
   try {
+    const rawParams = context?.params
+    const params = rawParams && typeof rawParams.then === 'function' ? await rawParams : rawParams || {}
     const productId = params.id
     
     // Find product in demo data
@@ -202,9 +204,11 @@ export async function GET(
  */
 export async function PUT(
   _request: NextRequest,
-  { params }: { params: { id: string } }
+  context: any
 ) {
   try {
+    const rawParams = context?.params
+    const params = rawParams && typeof rawParams.then === 'function' ? await rawParams : rawParams || {}
     const productId = params.id
     const updateData = await _request.json()
 
@@ -236,9 +240,12 @@ export async function PUT(
  */
 export async function DELETE(
   _request: NextRequest,
-  { params: _ }: { params: { id: string } }
+  context: any
 ) {
   try {
+    const rawParams = context?.params
+    const params = rawParams && typeof rawParams.then === 'function' ? await rawParams : rawParams || {}
+    const productId = params.id
     // In a real app, this would delete from the database
     // For demo purposes, we'll just return success
     return NextResponse.json({
