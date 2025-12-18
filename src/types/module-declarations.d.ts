@@ -1,8 +1,17 @@
 // Temporary module declarations to satisfy TypeScript in the editor
 declare module '@/lib/firebase' {
-  import type { Firestore } from 'firebase/firestore'
+  export const auth: any
   export const db: any
-  export default db
+  export const storage: any
+  export const googleProvider: any
+  export const onAuthStateChanged: any
+  export const signOut: any
+  export const signInWithPhoneNumber: any
+  export const PhoneAuthProvider: any
+  export const signInWithCredential: any
+  export const setPersistence: any
+  export const browserLocalPersistence: any
+  export default any
 }
 
 declare module '@/components/layout/Header' {
