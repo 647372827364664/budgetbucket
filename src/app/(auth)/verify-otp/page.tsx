@@ -7,6 +7,7 @@ import { ChevronLeft, CheckCircle } from 'lucide-react'
 import { OTPInput } from '@/components/auth/OTPInput'
 import { verifyPhoneOTP } from '@/services/authService'
 import { useAuthStore } from '@/store/authStore'
+import type { AuthStore } from '@/store/authStore'
 
 function OTPVerifyContent() {
   const router = useRouter()
@@ -19,9 +20,9 @@ function OTPVerifyContent() {
   const [isSuccess, setIsSuccess] = useState(false)
   const [resendCountdown, setResendCountdown] = useState(0)
 
-  const setUser = useAuthStore((state) => state.setUser)
-  const setLoading = useAuthStore((state) => state.setLoading)
-  const setAuthError = useAuthStore((state) => state.setError)
+  const setUser = useAuthStore((state: AuthStore) => state.setUser)
+  const setLoading = useAuthStore((state: AuthStore) => state.setLoading)
+  const setAuthError = useAuthStore((state: AuthStore) => state.setError)
 
   const handleVerifyOTP = async (e?: React.FormEvent) => {
     if (e) e.preventDefault()
