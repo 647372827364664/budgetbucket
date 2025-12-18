@@ -9,8 +9,10 @@ import {
   serverTimestamp
 } from 'firebase/firestore'
 
-export async function GET(_request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_request: NextRequest, context: any) {
   try {
+    const rawParams = context?.params
+    const params = rawParams && typeof rawParams.then === 'function' ? await rawParams : rawParams || {}
     const productId = params.id
     const reviewsRef = collection(db, 'products', productId, 'reviews')
     const q = query(reviewsRef, orderBy('createdAt', 'desc'))
@@ -37,8 +39,10 @@ export async function GET(_request: NextRequest, { params }: { params: { id: str
   }
 }
 
-export async function POST(request: NextRequest, { params }: { params: { id: string } }) {
+export async function POST(request: NextRequest, context: any) {
   try {
+    const rawParams = context?.params
+    const params = rawParams && typeof rawParams.then === 'function' ? await rawParams : rawParams || {}
     const productId = params.id
     const body = await request.json()
     const { userId, userName, userEmail, rating, comment } = body
