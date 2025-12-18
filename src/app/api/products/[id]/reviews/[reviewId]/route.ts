@@ -2,8 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/firebase'
 import { doc, getDoc, updateDoc, deleteDoc, increment } from 'firebase/firestore'
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string; reviewId: string } }) {
+export async function PUT(request: NextRequest, context: any) {
   try {
+    const rawParams = context?.params
+    const params = rawParams && typeof rawParams.then === 'function' ? await rawParams : rawParams || {}
     const { id: productId, reviewId } = params
     const body = await request.json()
     const { action } = body
@@ -24,8 +26,10 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string; reviewId: string } }) {
+export async function DELETE(request: NextRequest, context: any) {
   try {
+    const rawParams = context?.params
+    const params = rawParams && typeof rawParams.then === 'function' ? await rawParams : rawParams || {}
     const { id: productId, reviewId } = params
     const body = await request.json()
     const { userId } = body
