@@ -238,10 +238,7 @@ export async function PUT(
  * DELETE /api/products/[id]
  * Delete a product
  */
-export async function DELETE(
-  _request: NextRequest,
-  context: any
-) {
+export async function DELETE(_request: NextRequest) {
   try {
     // params are available via `context.params` if needed; not required for this demo delete
     return NextResponse.json({
