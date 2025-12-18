@@ -243,10 +243,7 @@ export async function DELETE(
   context: any
 ) {
   try {
-    const rawParams = context?.params
-    const params = rawParams && typeof rawParams.then === 'function' ? await rawParams : rawParams || {}
-    // In a real app, this would delete the product from the database using params.id
-    // For demo purposes, we'll just return success
+    // params are available via `context.params` if needed; not required for this demo delete
     return NextResponse.json({
       success: true,
       message: 'Product deleted successfully'
