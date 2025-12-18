@@ -10,7 +10,6 @@ import {
   Minus, 
   ShoppingBag, 
   Truck, 
-  Tag, 
   CheckCircle2, 
   AlertCircle,
   ArrowRight,
