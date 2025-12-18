@@ -49,6 +49,7 @@ declare module '@/store/wishlistStore' {
 }
 
 declare module '@/store/authStore' {
+  export type AuthStore = any
   export const useAuthStore: any
 }
 
