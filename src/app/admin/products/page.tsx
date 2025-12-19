@@ -983,7 +983,7 @@ export default function ProductsPage() {
                       />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           Category <span className="text-red-500">*</span>
@@ -1072,7 +1072,7 @@ export default function ProductsPage() {
                 {/* Pricing Tab */}
                 {activeTab === 'pricing' && (
                   <div className="space-y-5">
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           Selling Price <span className="text-red-500">*</span>
@@ -1129,7 +1129,7 @@ export default function ProductsPage() {
                 {/* Inventory Tab */}
                 {activeTab === 'inventory' && (
                   <div className="space-y-5">
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           Stock Quantity <span className="text-red-500">*</span>
@@ -1158,7 +1158,7 @@ export default function ProductsPage() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           Weight

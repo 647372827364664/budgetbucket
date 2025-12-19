@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useState } from 'react'
 import Link from 'next/link'
 import { Star, ShoppingCart, Heart, Eye } from 'lucide-react'
 import { useWishlistStore } from '@/store/wishlistStore'
@@ -53,8 +54,11 @@ export default function ProductCard({ product, variant = 'grid', className = '' 
           <Link href={`/products/${product.id}`}>
             <Image
               src={product.images?.[0] || 'https://via.placeholder.com/300x300'}
-                alt={product.name || 'Product image'}
+              alt={product.name || 'Product image'}
               fill
+              onError={(e) => {
+                // noop: Next/Image will render placeholder if src falsy, keep for debugging
+              }}
               className="object-cover"
             />
           </Link>
@@ -133,6 +137,7 @@ export default function ProductCard({ product, variant = 'grid', className = '' 
             src={product.images?.[0] || 'https://via.placeholder.com/300x300'}
             alt={product.title}
             fill
+            onError={() => { /* keep placeholder if error */ }}
             className="object-cover group-hover:scale-110 transition-transform duration-700"
           />
         </Link>

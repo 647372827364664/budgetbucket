@@ -6,6 +6,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Prevent horizontal overflow on small devices */
+html, body {
+  overflow-x: hidden;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;

@@ -188,9 +188,9 @@ export default function CartPage() {
                   <div className="space-y-6">
                     {items.map((item: LocalCartItem) => (
                       <div key={item.productId} className="group relative">
-                        <div className="flex gap-6 p-6 bg-gradient-to-r from-gray-50 to-purple-50 rounded-2xl hover:shadow-lg transition-all duration-300">
+                        <div className="flex flex-col sm:flex-row gap-6 p-6 bg-gradient-to-r from-gray-50 to-purple-50 rounded-2xl hover:shadow-lg transition-all duration-300">
                           {/* Product Image */}
-                          <div className="relative w-32 h-32 flex-shrink-0">
+                          <div className="relative w-full sm:w-32 h-48 sm:h-32 flex-shrink-0">
                             <Image
                               src={item.image || '/placeholder.jpg'}
                               alt={item.name}
