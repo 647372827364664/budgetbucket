@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
 import Link from 'next/link'
 import { Star, ShoppingCart, Heart, Eye } from 'lucide-react'
 import { useWishlistStore } from '@/store/wishlistStore'
