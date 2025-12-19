@@ -41,7 +41,7 @@ export default function WishlistPage() {
     const fetchWishlistProducts = async () => {
       try {
         const wishlistProducts = await Promise.all(
-          items.map(async (item) => {
+          items.map(async (item: { productId: string }) => {
             try {
               const response = await fetch(`/api/products/${item.productId}`)
               if (response.ok) {

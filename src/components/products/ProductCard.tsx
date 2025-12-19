@@ -17,7 +17,7 @@ export default function ProductCard({ product, variant = 'grid', className = '' 
   const { items: wishlistItems, addItem: addToWishlist, removeItem: removeFromWishlist } = useWishlistStore()
   const { addItem: addToCart } = useCartStore()
 
-  const isInWishlist = wishlistItems.some(item => item.productId === product.id)
+  const isInWishlist = wishlistItems.some((item: { productId: string }) => item.productId === product.id)
 
   const discountPercentage = product.originalPrice && product.price
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)

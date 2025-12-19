@@ -35,23 +35,9 @@ declare module '@/components/products/ProductReviews' {
   export const ProductReviews: FC<any>
 }
 
-declare module '@/types' {
-  export type Product = any
-  export type Review = any
-}
+// `@/types` is provided by `src/types/index.ts`; avoid shadowing its exports here.
 
-declare module '@/store/cartStore' {
-  export const useCartStore: any
-}
-
-declare module '@/store/wishlistStore' {
-  export const useWishlistStore: any
-}
-
-declare module '@/store/authStore' {
-  export type AuthStore = any
-  export const useAuthStore: any
-}
+// removed store module fallbacks so real store types are used
 
 declare module '@/services/whatsappService' {
   export function sendOrderNotification(...args: any[]): Promise<any>

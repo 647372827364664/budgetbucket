@@ -1,6 +1,6 @@
 'use client'
 
-import { ProductCard } from '@/components/products/ProductCard'
+import ProductCard from '@/components/products/ProductCard'
 
 const MOCK_PRODUCTS = [
   {

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Facebook, Twitter, Instagram, Linkedin, Phone, Mail, MapPin, MessageCircle } from 'lucide-react'
+import { Facebook, Twitter, Instagram, Phone, Mail, MapPin, MessageCircle } from 'lucide-react'
 
 export function Footer() {
   const whatsappNumber = '919217023668';

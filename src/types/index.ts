@@ -38,6 +38,8 @@ export interface Product {
   specifications: Specification[]
   rating?: number
   reviews?: Review[]
+  name?: string
+  hotDeal?: boolean
   createdAt: Date
   updatedAt: Date
   variants?: Variant[]

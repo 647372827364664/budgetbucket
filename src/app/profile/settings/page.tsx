@@ -11,8 +11,6 @@ import {
   Lock,
   Smartphone,
   Mail,
-  Globe,
-  Trash2,
   AlertTriangle,
   Check,
   Settings,
@@ -24,8 +22,7 @@ import {
   MapPin,
   CreditCard,
   HelpCircle,
-  FileText,
-  ChevronDown
+  FileText
 } from 'lucide-react'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { db, auth } from '@/lib/firebase'

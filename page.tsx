@@ -90,11 +90,14 @@ export default function ProductDetailPage() {
     if (!product) return
 
     addToCart({
+      productId: product.id,
       id: product.id,
       name: product.name,
       price: product.price,
       image: product.images[0],
-      quantity: quantity
+      quantity: quantity,
+      stock: product.stockCount || 0,
+      category: product.category || 'Uncategorized'
     })
     toast.success(`${quantity} ${product.name} added to cart!`)
   }
@@ -108,12 +111,7 @@ export default function ProductDetailPage() {
       removeFromWishlist(product.id)
       toast.success('Removed from wishlist')
     } else {
-      addToWishlist({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        image: product.images[0]
-      })
+      addToWishlist(product.id)
       toast.success('Added to wishlist!')
     }
   }
