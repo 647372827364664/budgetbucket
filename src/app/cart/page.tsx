@@ -12,7 +12,6 @@ import {
   Truck, 
   CheckCircle2, 
   ArrowRight,
-  Star,
   Shield,
   Gift
 } from 'lucide-react'
