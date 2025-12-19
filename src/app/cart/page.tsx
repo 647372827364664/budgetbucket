@@ -31,7 +31,7 @@ export default function CartPage() {
   const [taxRate, setTaxRate] = useState(0.18)
 
   // Calculate subtotal
-  const subtotal = items.reduce<number>((sum, item) => {
+  const subtotal = items.reduce((sum: number, item: any) => {
     return sum + item.price * item.quantity
   }, 0)
 
