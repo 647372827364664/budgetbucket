@@ -102,6 +102,7 @@ export default function ProductsPage() {
   const [imageFiles, setImageFiles] = useState<File[]>([])
   const [imagePreviews, setImagePreviews] = useState<string[]>([])
   const [uploadProgress, setUploadProgress] = useState(0)
+  const [keepOriginalQuality, setKeepOriginalQuality] = useState<boolean>(true)
   const [activeTab, setActiveTab] = useState<'basic' | 'pricing' | 'inventory' | 'media'>('basic')
   const fileInputRef = useRef<HTMLInputElement>(null)
   
@@ -473,20 +474,26 @@ export default function ProductsPage() {
     return results.filter((url): url is string => url !== null)
   }
   
-  // Compress image before upload - aggressive compression for reliable uploads
+  // Compress image before upload - configurable. If `keepOriginalQuality` is true or file is small, keep original.
   const compressImage = (file: File): Promise<File> => {
     return new Promise((resolve) => {
+      // Keep original when user prefers it, or when the file is already small (<2MB)
+      if (keepOriginalQuality || file.size <= 1024 * 1024 * 2) {
+        resolve(file)
+        return
+      }
+
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
       const img = document.createElement('img')
-      
+
       img.onload = () => {
-        // Max dimensions - keep small for fast upload
-        const MAX_WIDTH = 400
-        const MAX_HEIGHT = 400
-        
+        // Max dimensions - keep reasonably large to preserve quality
+        const MAX_WIDTH = 2000
+        const MAX_HEIGHT = 2000
+
         let { width, height } = img
-        
+
         if (width > MAX_WIDTH) {
           height = (height * MAX_WIDTH) / width
           width = MAX_WIDTH
@@ -495,11 +502,11 @@ export default function ProductsPage() {
           width = (width * MAX_HEIGHT) / height
           height = MAX_HEIGHT
         }
-        
+
         canvas.width = width
         canvas.height = height
         ctx?.drawImage(img, 0, 0, width, height)
-        
+
         canvas.toBlob(
           (blob) => {
             if (blob) {
@@ -507,8 +514,8 @@ export default function ProductsPage() {
                 type: 'image/jpeg',
                 lastModified: Date.now()
               })
-              console.log('Compressed:', file.name, 
-                (file.size / 1024).toFixed(0), 'KB →', 
+              console.log('Compressed:', file.name,
+                (file.size / 1024).toFixed(0), 'KB →',
                 (compressedFile.size / 1024).toFixed(0), 'KB')
               resolve(compressedFile)
             } else {
@@ -516,10 +523,10 @@ export default function ProductsPage() {
             }
           },
           'image/jpeg',
-          0.6 // 60% quality for smaller files
+          0.9 // 90% quality for good results
         )
       }
-      
+
       img.onerror = () => resolve(file)
       img.src = URL.createObjectURL(file)
     })
@@ -1211,6 +1218,18 @@ export default function ProductsPage() {
                         Product Images <span className="text-gray-400 font-normal">(max 5 images, 5MB each)</span>
                       </label>
                       
+                      <div className="flex items-center gap-4 mb-3">
+                        <label className="flex items-center gap-2 text-sm">
+                          <input
+                            type="checkbox"
+                            checked={keepOriginalQuality}
+                            onChange={(e) => setKeepOriginalQuality(e.target.checked)}
+                            className="w-4 h-4"
+                          />
+                          <span>Upload original quality (no aggressive compression)</span>
+                        </label>
+                      </div>
+
                       <input
                         ref={fileInputRef}
                         type="file"
