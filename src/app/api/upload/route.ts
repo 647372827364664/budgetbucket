@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto'
 
-// Cloudinary credentials
-const CLOUD_NAME = 'dgs5ffd18'
-const API_KEY = '714587139116837'
-const API_SECRET = 'pD2JjPrju1Bm81w8u298hPsbUeU'
+// Cloudinary credentials should come from environment variables in production
+const CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME || process.env.CLOUDINARY_NAME
+const API_KEY = process.env.CLOUDINARY_API_KEY
+const API_SECRET = process.env.CLOUDINARY_API_SECRET
 
 export async function POST(request: NextRequest) {
   try {
@@ -26,9 +26,14 @@ export async function POST(request: NextRequest) {
 
     // Upload to Cloudinary with signed upload
     try {
+      if (!CLOUD_NAME || !API_KEY || !API_SECRET) {
+        console.error('Cloudinary credentials are not set in environment variables')
+        throw new Error('Cloudinary not configured')
+      }
+
       const timestamp = Math.round(Date.now() / 1000)
       const folder = 'budget-bucket'
-      
+
       // Create signature for signed upload
       const signatureString = `folder=${folder}&timestamp=${timestamp}${API_SECRET}`
       const signature = crypto.createHash('sha1').update(signatureString).digest('hex')

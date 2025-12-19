@@ -15,6 +15,21 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'via.placeholder.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'budgetbucket.in',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.budgetbucket.in',
+        pathname: '/**',
+      },
     ],
     unoptimized: process.env.NODE_ENV === 'development',
   },
