@@ -16,10 +16,22 @@ import {
   Gift
 } from 'lucide-react'
 import { useCartStore } from '@/store/cartStore'
-import { CartItem } from '@/types'
 import { useAuthStore } from '@/store/authStore'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+
+type LocalCartItem = {
+  productId: string
+  id: string
+  name: string
+  image: string
+  price: number
+  originalPrice?: number
+  category: string
+  quantity: number
+  stock: number
+  selectedVariants?: Record<string, string>
+}
 
 export default function CartPage() {
   const router = useRouter()
@@ -32,7 +44,7 @@ export default function CartPage() {
   const [taxRate, setTaxRate] = useState(0.18)
 
   // Calculate subtotal
-  const subtotal = items.reduce((sum: number, item: CartItem) => {
+  const subtotal = items.reduce((sum: number, item: LocalCartItem) => {
     return sum + item.price * item.quantity
   }, 0)
 
@@ -174,7 +186,7 @@ export default function CartPage() {
                   </div>
 
                   <div className="space-y-6">
-                    {items.map((item: CartItem) => (
+                    {items.map((item: LocalCartItem) => (
                       <div key={item.productId} className="group relative">
                         <div className="flex gap-6 p-6 bg-gradient-to-r from-gray-50 to-purple-50 rounded-2xl hover:shadow-lg transition-all duration-300">
                           {/* Product Image */}
