@@ -55,7 +55,7 @@ export default function ProductCard({ product, variant = 'grid', className = '' 
               src={product.images?.[0] || 'https://via.placeholder.com/300x300'}
               alt={product.name || 'Product image'}
               fill
-              onError={(e) => {
+              onError={() => {
                 // noop: Next/Image will render placeholder if src falsy, keep for debugging
               }}
               className="object-cover"
