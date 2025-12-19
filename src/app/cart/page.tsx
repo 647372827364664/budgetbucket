@@ -52,10 +52,10 @@ export default function CartPage() {
     try {
       setIsLoading(true)
       // Mock discount validation
-      const validCodes = {
-        'SAVE10': { type: 'percentage', value: 10, maxDiscount: 100 },
-        'FLAT50': { type: 'fixed', value: 50 },
-        'WELCOME': { type: 'percentage', value: 15, maxDiscount: 150 }
+      const validCodes: Record<string, { type: 'percentage' | 'fixed'; value: number; maxDiscount?: number }> = {
+        SAVE10: { type: 'percentage', value: 10, maxDiscount: 100 },
+        FLAT50: { type: 'fixed', value: 50 },
+        WELCOME: { type: 'percentage', value: 15, maxDiscount: 150 }
       }
 
       const discount = validCodes[discountCode.toUpperCase()]
