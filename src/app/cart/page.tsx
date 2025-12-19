@@ -12,7 +12,6 @@ import {
   Truck, 
   CheckCircle2, 
   ArrowRight,
-  Heart,
   Star,
   Shield,
   Gift
